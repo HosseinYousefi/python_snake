@@ -38,6 +38,15 @@ class Snake:
         if mouse.x == self.body[0].x and mouse.y == self.body[0].y:
             self.eat()
             mouse.update()
+    
+    def is_gameover(self):
+        out_of_screen = not (0 <= self.body[0].x < Shared.N) or not (0 <= self.body[0].y < Shared.M)
+        coliding_with_self = False
+        for b in self.body[1:]:
+            if self.body[0].x == b.x and self.body[0].y == b.y:
+                coliding_with_self = True
+                break
+        return out_of_screen or coliding_with_self
 
 
 
